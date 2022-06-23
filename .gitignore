@@ -1,2 +1,3 @@
 docker_flask_server/venv/
+docker_pgsql/venv/
 .idea

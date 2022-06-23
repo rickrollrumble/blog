@@ -1,10 +1,10 @@
-from datetime import datetime
-
-from flask import Flask
+from flask import Flask, request, make_response, jsonify
 
 app = Flask(__name__)
 
 
-@app.route('/')
+@app.route('/', methods=['POST', 'GET', 'PUT', 'PATCH', 'DELETE'])
 def index():
-    return f"Hello, World. The time is {datetime.now()}"
+    if request.method is not None:
+        resp = {'message': f'{request.method} Request Logged'}
+        return make_response(jsonify(resp), 200)

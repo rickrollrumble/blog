@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  database:
+    image: postgres:14-alpine
+    ports:
+      - "2345:5432"
+    environment:
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - "./docker_flask_server/my-postgres.conf:/etc/postgresql/postgresql.conf"
+  flask_server:
+    build: docker_flask_server/.
+    ports:
+      - "7001:7000"
+  migrations:
+    build: db_migrations/.

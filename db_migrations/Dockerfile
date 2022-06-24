@@ -1,8 +1,7 @@
 # Declare base image to create container
 FROM python:3.8-slim-buster
 
-# expose container port
-EXPOSE 7000
+
 
 # create new directory at root called /app
 WORKDIR /app
@@ -15,4 +14,4 @@ RUN python3 -m pip install -r requirements.txt
 
 
 # run applications
-ENTRYPOINT ["gunicorn","app:app","--bind","0.0.0.0:7000"]
+ENTRYPOINT ["python3","migrate.py"]

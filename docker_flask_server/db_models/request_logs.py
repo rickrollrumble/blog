@@ -1,17 +1,11 @@
 from sqlalchemy import Integer, Column, String, DateTime
-from sqlalchemy.orm import registry
-mapper_registry = registry()
-Base = mapper_registry.generate_base()
+
+from docker_flask_server.db_models.globals import Base
 
 
-class User(Base):
+class Request(Base):
     __tablename__ = 'http_requests_2'
     id = Column(Integer, primary_key=True)
     method = Column(String(10))
-    host = Column(String(20))
+    host = Column(String(30))
     timestamp = Column(DateTime)
-
-
-
-
-

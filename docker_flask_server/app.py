@@ -22,6 +22,6 @@ session = get_db_session()
 def index():
     if request.method is not None:
         resp = {'message': f'{request.method} Request Logged'}
-        session.add(Request(method=request.method, host=request.host, timestamp=datetime.now()))
+        session.add(Request(method=request.method, host=request.remote_addr, timestamp=datetime.now()))
         session.commit()
         return make_response(jsonify(resp), 200)

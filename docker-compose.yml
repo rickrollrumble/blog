@@ -3,16 +3,30 @@ version: "3"
 services:
   database:
     image: mariadb:10
-    ports:
-      - "10306:3306"
     environment:
       - MARIADB_ROOT_PASSWORD=blog1234
       - MARIADB_ROOT_HOST=%
       - MARIADB_DATABASE=blog_schema
+    ports:
+      - "10306:3306"
+    volumes:
+      - blog_storage:/var/lib/mysql
   flask_server:
     build: docker_flask_server
     depends_on:
       - database
     ports:
       - "7001:7000"
+  simulators:
+    build: docker_flask_server/simulator
+    depends_on:
+      - database
+      - flask_server
+    volumes:
+      - simulator_logs:/app/logs
+    deploy:
+      replicas: 3
 
+volumes:
+  blog_storage:
+  simulator_logs:

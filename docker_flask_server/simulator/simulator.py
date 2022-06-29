@@ -5,8 +5,10 @@ from time import sleep
 
 import requests
 
+PROJECT_NAME = "docker_flask_server"
+
 methods = ['POST', 'GET', 'PUT', 'PATCH', 'DELETE']
-api_url = "http://blog-flask_server-1:7000"
+api_url = f"http://{PROJECT_NAME}-flask_server-1:7000"
 
 logging.basicConfig(level=logging.INFO,
                     filename=f'logs/{socket.gethostbyname(socket.gethostname())}_responses.log')

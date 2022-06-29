@@ -2,3 +2,4 @@ docker_flask_server/venv/
 docker_flask_server/simulator/venv/
 docker_pgsql/venv/
 .idea
+*.graphml
